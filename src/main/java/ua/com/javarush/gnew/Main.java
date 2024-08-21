@@ -15,7 +15,7 @@ public class Main {
         ArgumentsParser argumentsParser = new ArgumentsParser();
         RunOptions runOptions = argumentsParser.parse(args);
 
-        System.out.println("Test");
+        System.out.println("Main");
 
         try {
 
