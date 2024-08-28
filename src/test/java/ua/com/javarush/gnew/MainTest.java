@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    private static final boolean UKRAINIAN_LANGUAGE_TEST = false;
+    private static final boolean UKRAINIAN_LANGUAGE_TEST = true;
     private final String ENCRYPT_COMMAND = "-e";
     private final String DECRYPT_COMMAND = "-d";
     private final String BF_COMMAND = "-bf";
