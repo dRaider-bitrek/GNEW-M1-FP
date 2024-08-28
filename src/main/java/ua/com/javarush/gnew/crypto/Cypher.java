@@ -1,5 +1,8 @@
 package ua.com.javarush.gnew.crypto;
 
+import ua.com.javarush.gnew.language.Alphabet;
+import ua.com.javarush.gnew.language.LanguageFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,17 +40,18 @@ public class Cypher {
 //        return builder.toString();
 //    }
 
-    public  String decrypt(String text, int shift) {
-        String alphabet = getAlphabet(text);
+    public String decrypt(String text, int shift) {
+        var alphabetLanguage = LanguageFactory.alphabet(text);
+        shift = alphabetLanguage.absKey(shift);
 
-        if(shift<0) { shift = alphabet.length()-Math.abs(shift % alphabet.length());}
-
-
-        return encrypt(text, alphabet.length() - shift); // Для розшифрування використовується зворотний зсув
+        return encrypt(text, alphabetLanguage.length() - shift); // Для розшифрування використовується зворотний зсув
     }
+
     public String encrypt(String text, int shift) {
-        String alphabet = getAlphabet(text);
-        if(shift<0) { shift = alphabet.length()-Math.abs(shift % alphabet.length());}
+        var alphabetLanguage = LanguageFactory.alphabet(text);
+        shift = alphabetLanguage.absKey(shift);
+        String alphabet = alphabetLanguage.getAlphabet();
+
         StringBuilder encryptedText = new StringBuilder();
         int alphabetSize = alphabet.length();
 
@@ -73,16 +77,51 @@ public class Cypher {
                 encryptedText.append(c); // Якщо це не буква, просто додаємо символ без змін
             }
         }
-
         return encryptedText.toString();
     }
+//    public String encrypt(String text, int shift) {
+//
+//        String alphabet = getAlphabet(text);
+//
+//        if(shift<0) { shift = alphabet.length()-Math.abs(shift % alphabet.length());}
+//        StringBuilder encryptedText = new StringBuilder();
+//        int alphabetSize = alphabet.length();
+//
+//        for (int i = 0; i < text.length(); i++) {
+//            char c = text.charAt(i);
+//            if (Character.isUpperCase(c)) {
+//                int index = alphabet.indexOf(c);
+//                if (index != -1) {
+//                    char encryptedChar = alphabet.charAt((index + shift) % alphabetSize);
+//                    encryptedText.append(encryptedChar);
+//                } else {
+//                    encryptedText.append(c);
+//                }
+//            } else if (Character.isLowerCase(c)) {
+//                int index = alphabet.toLowerCase().indexOf(c);
+//                if (index != -1) {
+//                    char encryptedChar = alphabet.toLowerCase().charAt((index + shift) % alphabetSize);
+//                    encryptedText.append(encryptedChar);
+//                } else {
+//                    encryptedText.append(c);
+//                }
+//            } else {
+//                encryptedText.append(c); // Якщо це не буква, просто додаємо символ без змін
+//            }
+//        }
+//
+//        return encryptedText.toString();
+//    }
 
-    public  int analyzeFrequency(String text) {
-        String alphabet = getAlphabet(text);
+    public int analyzeFrequency(String text) {
+        var alphabetLanguage = LanguageFactory.alphabet(text);
+        String alphabet = alphabetLanguage.getAlphabet();
+        var letterFrequency = alphabetLanguage.getLetterFrequency();
 
-        double[] letterFrequency;
-        if (alphabet == UKRAINIAN_ALPHABET)  letterFrequency =UKRAINIAN_LETTER_FREQUENCY;
-        else letterFrequency=ENGLISH_LETTER_FREQUENCY;
+//        String alphabet = getAlphabet(text);
+//        double[] letterFrequency= null;
+//        if (alphabet == UKRAINIAN_ALPHABET)  letterFrequency =UKRAINIAN_LETTER_FREQUENCY;
+//        else letterFrequency=ENGLISH_LETTER_FREQUENCY;
 
         Map<Character, Integer> frequencyMap = new HashMap<>();
         int alphabetSize = alphabet.length();
@@ -117,7 +156,7 @@ public class Cypher {
 
 
     public static String getAlphabet(String text) {
-        Pattern pattern =  Pattern.compile("[а-яА-ЯґҐєЄіІїЇ]+");
+        Pattern pattern = Pattern.compile("[а-яА-ЯґҐєЄіІїЇ]+");
 
         Matcher matcher = pattern.matcher(text);
 //        System.out.println(matcher.find());
@@ -126,24 +165,24 @@ public class Cypher {
         if (matcher.find()) { // Український текст
 //            if (text.toString().contains("а")) { // Український текст
 
-                alphabet = UKRAINIAN_ALPHABET;
+            alphabet = UKRAINIAN_ALPHABET;
 //                letterFrequency = UKRAINIAN_LETTER_FREQUENCY;
-            } else { // Англійський текст
-                alphabet = ENGLISH_ALPHABET;
+        } else { // Англійський текст
+            alphabet = ENGLISH_ALPHABET;
 //                letterFrequency = ENGLISH_LETTER_FREQUENCY;
-            }
+        }
 
 
         return alphabet;
     }
-
-
-    private Character processSymbol(char symbol, ArrayList<Character> rotatedAlphabet) {
-        if (!originalAlphabet.contains(symbol)) {
-            return symbol;
-        }
-        int index = originalAlphabet.indexOf(symbol);
-
-        return rotatedAlphabet.get(index);
-    }
+//
+//
+//    private Character processSymbol(char symbol, ArrayList<Character> rotatedAlphabet) {
+//        if (!originalAlphabet.contains(symbol)) {
+//            return symbol;
+//        }
+//        int index = originalAlphabet.indexOf(symbol);
+//
+//        return rotatedAlphabet.get(index);
+//    }
 }

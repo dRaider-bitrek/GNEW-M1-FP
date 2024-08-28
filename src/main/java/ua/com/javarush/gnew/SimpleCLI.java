@@ -63,7 +63,7 @@ public class SimpleCLI implements Runnable{
 
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
-                //                throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
         }
 
@@ -82,7 +82,7 @@ public class SimpleCLI implements Runnable{
 
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
-                //                throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
         }
 
