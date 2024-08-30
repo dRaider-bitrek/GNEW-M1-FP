@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class SimpleCLI implements Runnable{
+    private final FileManager fileManager = new FileManager();
+    private final Cypher cypher = new Cypher();
     /**
      * -e Encrypt
      * -d Decrypt
@@ -26,14 +28,11 @@ public class SimpleCLI implements Runnable{
     Path file;
     @CommandLine.Option(names = { "-k", "--key" },  description = "Key",defaultValue = "0")
     int key;
-    private final FileManager fileManager = new FileManager();
-    private final Cypher cypher = new Cypher();
+
     @Override
     public void run() {
         System.out.println(" Encrypt: "+encrypt+";\n Decrypt: "+decrypt+";\n Brute force: "+bruteForce
                 + ";\n File path: "+file.getParent()+";\n Key: "+key);
-
-        //        key = Math.abs(key);
 
         if(encrypt){
             try {

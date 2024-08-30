@@ -11,20 +11,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Cypher {
-    private final ArrayList<Character> originalAlphabet = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
-    private static final String ENGLISH_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String UKRAINIAN_ALPHABET = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
-    private static final double[] ENGLISH_LETTER_FREQUENCY = {
-            8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094,
-            6.966, 0.153, 0.772, 4.025, 2.406, 6.749, 7.507, 1.929,
-            0.095, 5.987, 6.327, 9.056, 2.758, 0.978, 2.360, 0.150,
-            1.974, 0.074
-    };
-    private static final double[] UKRAINIAN_LETTER_FREQUENCY = {
-            7.45, 4.92, 4.33, 1.06, 0.01, 2.98, 1.83, 0.77, 4.92, 5.68, 2.28, 5.61, 2.72, 4.03, 7.59,
-            9.13, 4.54, 0.81, 7.19, 5.45, 1.58, 2.06, 2.08, 0.99, 0.43, 1.47, 1.72, 0.18, 1.24, 0.32,
-            2.26, 1.27, 0.21
-    };
+//    private final ArrayList<Character> originalAlphabet = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
+//    private static final String ENGLISH_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//    private static final String UKRAINIAN_ALPHABET = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
+//    private static final double[] ENGLISH_LETTER_FREQUENCY = {
+//            8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094,
+//            6.966, 0.153, 0.772, 4.025, 2.406, 6.749, 7.507, 1.929,
+//            0.095, 5.987, 6.327, 9.056, 2.758, 0.978, 2.360, 0.150,
+//            1.974, 0.074
+//    };
+//    private static final double[] UKRAINIAN_LETTER_FREQUENCY = {
+//            7.45, 4.92, 4.33, 1.06, 0.01, 2.98, 1.83, 0.77, 4.92, 5.68, 2.28, 5.61, 2.72, 4.03, 7.59,
+//            9.13, 4.54, 0.81, 7.19, 5.45, 1.58, 2.06, 2.08, 0.99, 0.43, 1.47, 1.72, 0.18, 1.24, 0.32,
+//            2.26, 1.27, 0.21
+//    };
 
 //    public String encrypt(String input, int key) {
 //        key = Math.negateExact(key);
@@ -155,26 +155,26 @@ public class Cypher {
     }
 
 
-    public static String getAlphabet(String text) {
-        Pattern pattern = Pattern.compile("[а-яА-ЯґҐєЄіІїЇ]+");
-
-        Matcher matcher = pattern.matcher(text);
-//        System.out.println(matcher.find());
-        String alphabet = "";
-
-        if (matcher.find()) { // Український текст
-//            if (text.toString().contains("а")) { // Український текст
-
-            alphabet = UKRAINIAN_ALPHABET;
-//                letterFrequency = UKRAINIAN_LETTER_FREQUENCY;
-        } else { // Англійський текст
-            alphabet = ENGLISH_ALPHABET;
-//                letterFrequency = ENGLISH_LETTER_FREQUENCY;
-        }
-
-
-        return alphabet;
-    }
+//    public static String getAlphabet(String text) {
+//        Pattern pattern = Pattern.compile("[а-яА-ЯґҐєЄіІїЇ]+");
+//
+//        Matcher matcher = pattern.matcher(text);
+////        System.out.println(matcher.find());
+//        String alphabet = "";
+//
+//        if (matcher.find()) { // Український текст
+////            if (text.toString().contains("а")) { // Український текст
+//
+//            alphabet = UKRAINIAN_ALPHABET;
+////                letterFrequency = UKRAINIAN_LETTER_FREQUENCY;
+//        } else { // Англійський текст
+//            alphabet = ENGLISH_ALPHABET;
+////                letterFrequency = ENGLISH_LETTER_FREQUENCY;
+//        }
+//
+//
+//        return alphabet;
+//    }
 //
 //
 //    private Character processSymbol(char symbol, ArrayList<Character> rotatedAlphabet) {
