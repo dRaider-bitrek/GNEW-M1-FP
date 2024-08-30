@@ -29,10 +29,14 @@ public class SimpleCLI implements Runnable{
     @CommandLine.Option(names = { "-k", "--key" },  description = "Key",defaultValue = "0")
     int key;
 
+
+
     @Override
     public void run() {
-        System.out.println(" Encrypt: "+encrypt+";\n Decrypt: "+decrypt+";\n Brute force: "+bruteForce
-                + ";\n File path: "+file.getParent()+";\n Key: "+key);
+//        System.out.println(" Encrypt: "+encrypt+";\n Decrypt: "+decrypt+";\n Brute force: "+bruteForce
+//                + ";\n File path: "+file.getParent()+";\n Key: "+key);
+
+       key = Math.abs(key);
 
         if(encrypt){
             try {
